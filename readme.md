@@ -73,6 +73,11 @@ NH ESN web : 8080
    8. EMS Log 다운로드 메뉴
 	-> 해당 매장이 Gen2+ 인지 GenServer 인지 알 수 있는 방법
 
+![image](https://github.com/user-attachments/assets/f9afbc1a-a11d-4c02-ab1f-5173b7959e7a)
+
+![image](https://github.com/user-attachments/assets/08f49cfd-f40a-4b9c-855d-feb3557f0ddb)
 
 
-아이피 정보를 사용자가 선택하게끔 만들까??? 
+
+
+
