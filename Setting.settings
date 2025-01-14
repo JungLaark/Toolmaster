@@ -1,0 +1,69 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ToolMaster" GeneratedClassName="Setting">
+  <Profiles />
+  <Settings>
+    <Setting Name="EsnIp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.30.30</Value>
+    </Setting>
+    <Setting Name="EsnPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8082</Value>
+    </Setting>
+    <Setting Name="EsnId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">develop</Value>
+    </Setting>
+    <Setting Name="EsnPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">esl</Value>
+    </Setting>
+    <Setting Name="SshId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="SshPw" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lgw#@**)</Value>
+    </Setting>
+    <Setting Name="SshPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">58176</Value>
+    </Setting>
+    <Setting Name="dbUserId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">postgres</Value>
+    </Setting>
+    <Setting Name="dbName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">esl</Value>
+    </Setting>
+    <Setting Name="dbPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5432</Value>
+    </Setting>
+    <Setting Name="dbPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cgESLPassword</Value>
+    </Setting>
+    <Setting Name="remotePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/app/daemon/config/</Value>
+    </Setting>
+    <Setting Name="localPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="textFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TestStoreTable.txt</Value>
+    </Setting>
+    <Setting Name="userId_lab" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ateciot_lab</Value>
+    </Setting>
+    <Setting Name="password_lab" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lab@12345</Value>
+    </Setting>
+    <Setting Name="userId_service" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ateciot_service</Value>
+    </Setting>
+    <Setting Name="password_service" Type="System.String" Scope="User">
+      <Value Profile="(Default)">service@12345</Value>
+    </Setting>
+    <Setting Name="isLogin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="corePort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="deleteRowPW" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wasadm@#</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

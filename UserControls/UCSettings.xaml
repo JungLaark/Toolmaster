@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="ToolMaster.UserControls.UCSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToolMaster.UserControls"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             mc:Ignorable="d" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="dx:SimpleButton">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF007ACC" />
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="mainWindowGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Foreground="White" Text="ESN 접속 정보" FontWeight="Bold" FontSize="30" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Foreground="White" Text="SSH 접속 정보" FontWeight="Bold" FontSize="30" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Foreground="White" Text="EMS DB 접속 정보" FontWeight="Bold" FontSize="30" Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <TextBlock Foreground="White" Text="ESN IP" FontWeight="Bold" FontSize="20" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtEsnIp"  FontSize="20"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Height="50" NullText="ESN 아이피 입력"/>
+        <TextBlock Foreground="White" Text="ESN PORT" FontWeight="Bold" FontSize="20" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtEsnPort"  FontSize="20"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Height="50" NullText="ESN 포트 입력"/>
+        <TextBlock Foreground="White" Text="ESN ID" FontWeight="Bold" FontSize="20" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtEsnId"  FontSize="20"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5" Height="50" NullText="ESN 아이디 입력"/>
+        <TextBlock Foreground="White" Text="ESN PW" FontWeight="Bold" FontSize="20" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+        <dxe:PasswordBoxEdit  x:Name="txtEsnPw"  FontSize="20"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="6" Height="50" NullText="ESN 비밀번호 입력"/>
+        <TextBlock Foreground="White" Text="CORE PORT" FontWeight="Bold" FontSize="20" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtCorePort"  FontSize="20"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Height="50" NullText="CORE 포트 입력"/>
+        <!--<TextBlock Foreground="White" Text="SSH PORT" FontWeight="Bold" FontSize="20" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtSshPort"  FontSize="20"  Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Height="50" NullText="SCP 포트 입력"/>-->
+
+        <TextBlock Foreground="White" Text="SSH ID" FontWeight="Bold" FontSize="20" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtSshId"  FontSize="20"  Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="3" Height="50" NullText="SSH 아이디 입력"/>
+        <TextBlock Foreground="White" Text="SSH PW" FontWeight="Bold" FontSize="20" Grid.Column="5" Grid.Row="4" VerticalAlignment="Center"/>
+        <dxe:PasswordBoxEdit  x:Name="txtSshPw"  FontSize="20"  Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="4" Height="50" NullText="SSH 비밀번호 입력"/>
+        <TextBlock Foreground="White" Text="SSH PORT" FontWeight="Bold" FontSize="20" Grid.Column="5" Grid.Row="5" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtSshPort"  FontSize="20"  Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="5" Height="50" NullText="SSH 포트 입력"/>
+
+        <TextBlock Foreground="White" Text="DB ID" FontWeight="Bold" FontSize="20" Grid.Column="9" Grid.Row="3" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtDbUserId"  FontSize="20"  Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="3" Height="50" NullText="DB 아이디 입력"/>
+        <TextBlock Foreground="White" Text="DB NAME" FontWeight="Bold" FontSize="20" Grid.Column="9" Grid.Row="4" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtDbName"  FontSize="20"  Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="4" Height="50" NullText="DB 이름 입력"/>
+        <TextBlock Foreground="White" Text="DB PW" FontWeight="Bold" FontSize="20" Grid.Column="9" Grid.Row="5" VerticalAlignment="Center"/>
+        <dxe:PasswordBoxEdit  x:Name="txtDbPw"  FontSize="20"  Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="5" Height="50" NullText="DB 비밀번호 입력"/>
+        <TextBlock Foreground="White" Text="DB PORT" FontWeight="Bold" FontSize="20" Grid.Column="9" Grid.Row="6" VerticalAlignment="Center"/>
+        <dxe:TextEdit x:Name="txtDbPort"  FontSize="20"  Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="6" Height="50" NullText="DB 포트 입력"/>
+
+        
+
+        <!--<TextBlock Foreground="White" Text="비밀번호" FontWeight="Bold" FontSize="30" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" />
+        <dxe:PasswordBoxEdit x:Name="txtPassword"  FontSize="22"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Height="50" NullText="비밀번호를 입력해주세요."/>-->
+
+        <dx:SimpleButton x:Name="btnSave" Grid.Column="3" Grid.Row="11" Grid.ColumnSpan="3" Content="설정 저장" FontWeight="Bold" FontSize="25" ButtonKind="Simple" Height="50" Click="btnSave_Click" Glyph="{dx:DXImage SvgImages/DiagramIcons/save.svg}" GlyphAlignment="Right" GlyphToContentOffset="10"/>
+        <dx:SimpleButton x:Name="btnOpenLog" Grid.Column="7" Grid.Row="11" Grid.ColumnSpan="3" Content="로그 파일 확인" FontWeight="Bold" FontSize="25" ButtonKind="Simple" Height="50" Click="btnOpenLog_Click" Glyph="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" GlyphAlignment="Right" GlyphToContentOffset="10"/>
+
+        <!--<Label Content="문의사항 : SW개발팀 정찬식 선임 / csjung@ateciot.com" Grid.Column="10" Grid.Row="15" Grid.ColumnSpan="4" FontSize="17"></Label>-->
+
+        <!--<Image Source="/UserControls/ateciot2.png" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="6" Grid.RowSpan="2"/>-->
+    </Grid>
+</UserControl>

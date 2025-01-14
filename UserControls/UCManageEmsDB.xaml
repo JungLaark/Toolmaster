@@ -1,0 +1,154 @@
+<UserControl x:Class="ToolMaster.UserControls.UCManageEmsDB"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:local="clr-namespace:ToolMaster.UserControls"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="450" d:DesignWidth="900">
+    <UserControl.Resources>
+        <Style x:Key="SelectedRowStyle" TargetType="{x:Type dxg:RowControl}">
+            <Style.Triggers>
+                <Trigger Property="SelectionState" Value="Selected">
+                    <Setter Property="Background" Value="#FF007ACC"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True">
+                    <Setter Property="Background" Value="#FF007ACC"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="dx:SimpleButton">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF007ACC" />
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <dx:WaitIndicator Grid.Row="0" x:Name="waitIndicator" DeferedVisibility="True" Visibility="Hidden" Content="" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="3">
+            <dx:WaitIndicator.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock Text="Please Wait" FontSize="20"/>
+                        <TextBlock Text="Loading..."/>
+                    </StackPanel>
+                </DataTemplate>
+            </dx:WaitIndicator.ContentTemplate>
+        </dx:WaitIndicator>
+        <StackPanel>
+            <DockPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0">
+                <TextBlock Text="ESN IP 주소" VerticalAlignment="Center" Margin="0 0 20 0 " FontSize="30" FontWeight="Bold"/>
+                <TextBox x:Name="txtIpAddress" FontSize="20" Height="40" Width="170" FontFamily="맑은 고딕" VerticalAlignment="Center" VerticalContentAlignment="Center" PreviewMouseDown="txtIpAddress_PreviewMouseDown"/>
+                <dx:SimpleButton x:Name="btnConfirm" Height="40" Margin="20 0 0 0" Click="btnConfirm_Click" Glyph="{dx:DXImage SvgImages/Business Objects/BO_Validation.svg}" GlyphAlignment="Right" GlyphToContentOffset="10" GlyphWidth="20">
+                    <dx:SimpleButton.Content>
+                        <Grid>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="20">매장 조회</TextBlock>
+                        </Grid>
+                    </dx:SimpleButton.Content>
+                </dx:SimpleButton>
+            </DockPanel>
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 20 0 0" >
+                <StackPanel>
+                    <GroupBox Header="매장 리스트" FontSize="20">
+                        <!--<DataGrid x:Name="mainGrid" Width="500" Height="700" Margin="0 0 0 0" BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="mainGrid_MouseLeftButtonUp" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="매장 코드" Binding="{Binding Path=str_code}"  Width="100"  FontSize="18"/>
+                            <DataGridTextColumn Header="매장 명" Binding="{Binding Path=str_name}" Width="180" FontSize="18"/>
+                            <DataGridTextColumn Header="EMS URL" Binding="{Binding Path=ip_addr}" Width="180" FontSize="18"  />
+                        </DataGrid.Columns>
+                    </DataGrid>-->
+                        <dxg:GridControl x:Name="mainGrid" Width="500" Height="700" MouseLeftButtonUp="mainGrid_MouseLeftButtonUp" SelectedItemChanged="mainGrid_SelectedItemChanged" SelectionChanged="mainGrid_SelectionChanged" SelectionMode="Row">
+                            <dxg:GridControl.View>
+                                <dxg:TableView AutoWidth="True" ShowGroupPanel="False" AllowBandMultiRow="True" ShowIndicator="True" AllowEditing="False" RowStyle="{StaticResource SelectedRowStyle}">
+                                </dxg:TableView>
+                            </dxg:GridControl.View>
+                            <dxg:GridColumn FieldName="매장코드" Binding="{Binding Path=str_code}" Width="190" HorizontalHeaderContentAlignment="Center"/>
+                            <dxg:GridColumn FieldName="매장명" Binding="{Binding Path=str_name}" Width="160" HorizontalHeaderContentAlignment="Center"/>
+                            <dxg:GridColumn FieldName="EMS URL" Binding="{Binding Path=ip_addr}" Width="180" HorizontalHeaderContentAlignment="Center"/>
+                        </dxg:GridControl>
+                    </GroupBox>
+                    <TextBlock Text="0 건" x:Name="txtStoreCount" FontSize="20" VerticalAlignment="Center" Margin="0 0 0 0" />
+                    <TextBlock x:Name="txtSelectedStoreUrl" Visibility="Hidden"/>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Header="테이블 목록(체크박스 클릭)" FontSize="20">
+                        <!--<DataGrid x:Name="gridTableList" FontSize="18" Width="230" Height="700" Margin="0 0 0 0" BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="gridTableList_MouseLeftButtonUp" CurrentCellChanged="gridTableList_CurrentCellChanged" PreparingCellForEdit="gridTableList_PreparingCellForEdit" CanUserDeleteRows="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="테이블 명" Binding="{Binding Path=tablename}"  Width="200" FontSize="18"/>
+                        </DataGrid.Columns>
+                    </DataGrid>-->
+                        <dxg:GridControl x:Name="gridTableList" Width="270" Height="700" MouseLeftButtonUp="gridTableList_MouseLeftButtonUp" SelectionMode="Row">
+                            <dxg:GridControl.View>
+                                <dxg:TableView TotalSummaryPosition="None" ShowGroupPanel="False" AutoWidth="True" ShowIndicator="False" AllowEditing="False" RowStyle="{StaticResource SelectedRowStyle}" ShowCheckBoxSelectorColumn="True" CheckBoxSelectorColumnWidth="50"/>
+                            </dxg:GridControl.View>
+                            <dxg:GridColumn FieldName="테이블 명" Binding="{Binding Path=tablename}" Width="220" HorizontalHeaderContentAlignment="Center" />
+                        </dxg:GridControl>
+                    </GroupBox>
+                    <DockPanel HorizontalAlignment="Left">
+                        <TextBlock Text="0 건" x:Name="txtTableCount" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0" />
+                        <TextBlock x:Name="txtTableName" Text="Table Name" FontSize="15" Margin="0 3 0 0" FontWeight="Bold" Visibility="Hidden"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Header="테이블 조회 결과(체크박스 클릭)" FontSize="20">
+                        <!--<DataGrid x:Name="gridSelectedTable" Width="850" Height="600" Margin="0 0 0 0" BorderBrush="Black" BorderThickness="1" FontSize="16" CurrentCellChanged="gridSelectedTable_CurrentCellChanged" PreparingCellForEdit="gridSelectedTable_PreparingCellForEdit" CanUserDeleteRows="False" CanUserAddRows="False">
+                    </DataGrid>-->
+                        <dxg:GridControl x:Name="gridSelectedTable" Width="830" Height="600" AutoGenerateColumns="AddNew" SelectionMode="Row">
+                            <dxg:GridControl.View>
+                                <dxg:TableView x:Name="tableViewSelectedTable" TotalSummaryPosition="None" ShowGroupPanel="False" ShowIndicator="False" AllowEditing="False" RowStyle="{StaticResource SelectedRowStyle}" ShowCheckBoxSelectorColumn="True"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </GroupBox>
+                    <TextBlock Text="0 건" x:Name="txtRowCount" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0" />
+                    <StackPanel HorizontalAlignment="Center" Margin="0 0 0 0">
+                        <!--<DockPanel>
+                                <Button x:Name="btnDeleteFromCode" Click="btnDeleteFromCode_Click" Margin="10" FontSize="20" Width="200" >g_usertext 삭제</Button>
+                                <Button x:Name="btnSelectTable" Click="btnSelectTable_Click" Margin="10" FontSize="20">g_usertext 테이블 Data 저장</Button>
+                            </DockPanel>-->
+                        <StackPanel Margin="5 0 0 0">
+                            <DockPanel>
+                                <DockPanel HorizontalAlignment="Left">
+                                    <dx:SimpleButton x:Name="btnDelete" Click="btnDelete_Click" Margin="0 20 0 0" FontSize="23" Height="50" Width="400" Glyph="{dx:DXImage SvgImages/RichEdit/DeleteTable.svg}"  GlyphAlignment="Right" GlyphToContentOffset="15" GlyphWidth="20" GlyphHeight="30">
+                                        <dx:SimpleButton.Content>
+                                            <Grid>
+                                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="25">데이터 삭제</TextBlock>
+                                            </Grid>
+                                        </dx:SimpleButton.Content>
+                                    </dx:SimpleButton>
+                                    <dx:SimpleButton x:Name="btnLoginFailInit" Click="btnLoginFailInit_Click"  Margin="20 20 0 0" FontSize="23" Height="50" Width="400" Glyph="{dx:DXImage SvgImages/Business Objects/BO_Security_Permission.svg}"  GlyphAlignment="Right" GlyphToContentOffset="15" GlyphWidth="20" GlyphHeight="30">
+                                        <dx:SimpleButton.Content>
+                                            <Grid>
+                                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" FontSize="25">로그인 실패 횟수 초기화</TextBlock>
+                                            </Grid>
+                                        </dx:SimpleButton.Content>
+                                    </dx:SimpleButton>
+                                </DockPanel>
+                                <!--<Button x:Name="btnTruncate" Click="btnTruncate_Click" Margin="5 5 0 0" FontSize="23" Height="50" >선택한 테이블의 전체 데이터 삭제</Button>-->
+                                <!--<Button x:Name="btnUpdate" Click="btnUpdate_Click" Margin="10" FontSize="25" FontWeight="Bold">UPDATE</Button>-->
+                            </DockPanel>
+                            <DockPanel HorizontalAlignment="Left">
+                                <Label x:Name="labelPassword" Content="비밀번호 입력" FontSize="20" Margin="0 10 5 0" Visibility="Hidden"></Label>
+                                <TextBox x:Name="txtPassword" Width="200" Margin="5 15 0 0" Visibility="Hidden"></TextBox>
+                            </DockPanel>
+                            <!--<DockPanel>
+                                <Button x:Name="btnTruncateAllStore" Click="btnTruncateAllStore_Click" Margin="0 5 0 0" FontSize="23" Height="50" >1개 이상의 매장에서 1개 이상의 테이블 전체 데이터 삭제</Button>
+                            </DockPanel>-->
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    <TextBox x:Name="txtItemCode" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Visibility="Hidden" AcceptsReturn="True" Height="50"></TextBox>
+                    <DockPanel HorizontalAlignment="Right" Margin="0 0 770 0" Visibility="Hidden">
+                        <TextBlock x:Name="txtSeletedInfomaion" Foreground="Red" FontWeight="Bold" FontSize="25" Margin="20 0 0 0"></TextBlock>
+                    </DockPanel>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
